@@ -11,28 +11,9 @@ namespace Project0.Library
 
         public Merchandise merch;
 
-        private int ID;
-        private string Name;
         private int Amount;
         private int StoreID;
 
-        public int InventoryID
-        {
-            get { return ID; }
-            set
-            {
-                ID = value;
-            }
-        }
-
-        public string MerchName
-        {
-            get { return Name; }
-            set
-            {
-                Name = value;
-            }
-        }
 
         public int StockAmount
         {
@@ -52,21 +33,8 @@ namespace Project0.Library
             }
         }
 
-        /*public Inventory(List<Merchandise> i)
+        public Inventory(int store, int stock = 0)
         {
-            inventory = i;
-        }*/
-
-        /*public void inventoryAmount(List<Merchandise> stock)
-        {
-            // return what is in stock
-            foreach (Merchandise item in stock)
-                Console.WriteLine("The items in stock are: " + item);
-        }*/
-        public Inventory(int id, string merch, int stock, int store)
-        {
-            ID = id;
-            Name = merch;
             Amount = stock;
             StoreID = store;
         }

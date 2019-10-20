@@ -1,0 +1,8 @@
+C:\revature\wesley-proj1\MVC\demo\demo.Library\bin\Debug\netstandard2.0\demo.Library.deps.json
+C:\revature\wesley-proj1\MVC\demo\demo.Library\bin\Debug\netstandard2.0\demo.Library.dll
+C:\revature\wesley-proj1\MVC\demo\demo.Library\bin\Debug\netstandard2.0\demo.Library.pdb
+C:\revature\wesley-proj1\MVC\demo\demo.Library\obj\Debug\netstandard2.0\demo.Library.csprojAssemblyReference.cache
+C:\revature\wesley-proj1\MVC\demo\demo.Library\obj\Debug\netstandard2.0\demo.Library.AssemblyInfoInputs.cache
+C:\revature\wesley-proj1\MVC\demo\demo.Library\obj\Debug\netstandard2.0\demo.Library.AssemblyInfo.cs
+C:\revature\wesley-proj1\MVC\demo\demo.Library\obj\Debug\netstandard2.0\demo.Library.dll
+C:\revature\wesley-proj1\MVC\demo\demo.Library\obj\Debug\netstandard2.0\demo.Library.pdb

@@ -46,15 +46,10 @@ namespace Project0.Library
         public int CustomerID
         {
             get { return ID; }
-            /*set
-            {
-                ID = value;
-            }*/
         }
 
         public Customer(string fName, string lName, int custID = 0)
         {
-            //SetName(firstName, lastName);
             firstName = fName;
             lastName = lName;
             ID = custID;
@@ -64,38 +59,6 @@ namespace Project0.Library
         {
             return $"\tID:{CustomerID} \n\tFIRST NAME: {firstName} \n\tLAST NAME: {lastName}";
         }
-
-        /* public string GetName()
-         {
-             return firstName + " " + lastName;
-         }*/
-
-        /*public void SetName(string firstName, string lastName)
-        {
-            if (firstName == null)
-            {
-                throw new ArgumentNullException(nameof(firstName));
-            }
-            else if (lastName == null)
-            {
-                throw new ArgumentNullException(nameof(lastName));
-            }
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }*/
-        /* public Address Getaddress()
-         {
-             return address;
-         }
-
-         public void SetAddress(Address customerAddress)
-         {
-             if (address == null)
-             {
-                 throw new ArgumentNullException(nameof(address));
-             }
-             this.address = customerAddress;
-         }*/
 
         public bool CheckValidCustomer()
         {

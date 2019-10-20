@@ -6,24 +6,8 @@ namespace Project0.Library
 {
     public class Merchandise
     {
-        /*public string a = "a";
-        public int aAmount { get; set; }
-
-        public string b = "b";
-        public int bAmount { get; set; }
-
-        public string c = "c";
-        public int cAmount { get; set; }
-
-        public bool CheckValidMerchAmount()
-        {
-            if (aAmount >= 0 && bAmount >= 0 && cAmount >= 0)
-                return true;
-            else
-                return false;
-        }*/
         private string Name;
-
+        private int ID;
         private decimal Price;
 
         public string MerchName
@@ -40,6 +24,15 @@ namespace Project0.Library
                     Name = value;
             }
         }
+        
+        public int MerchID
+        {
+            get { return ID; }
+            set
+            {
+                ID = value;
+            }
+        }
 
         public decimal MerchPrice
         {
@@ -50,21 +43,17 @@ namespace Project0.Library
             }
         }
 
-        public Merchandise(string n, decimal p)
+        public Merchandise(string n, decimal p, int i = 0)
         {
             Price = p;
             Name = n;
+            ID = i;
         }
 
         public override string ToString()
         {
-            string str = $"\n\tNAME: {this.Name} \n\tCost:{Math.Round(this.Price, 2)}";
+            string str = $"\n\tID: {ID} \n\tNAME: {this.Name} \n\tCost:{Math.Round(this.Price, 2)}";
             return str;
         }
-
-        /*public Merchandise(string n)
-        {
-            Name = n;
-        }*/
     }
 }

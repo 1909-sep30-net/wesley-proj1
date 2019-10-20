@@ -9,9 +9,9 @@ namespace Project0.Library
         //colorado, texas, georgia, arizona, florida
 
         private int ID;
-        private string street, city, state, zip;
+        private string Location;
 
-        public Dictionary<Merchandise, int> iven;
+        public Dictionary<Merchandise, int/*quantity*/> iven;
 
         public int StoreID
         {
@@ -22,56 +22,25 @@ namespace Project0.Library
             }
         }
 
-        public string st
+        public string Loc
         {
-            get { return street; }
+            get { return Location; }
             set
             {
-                street = value;
+                Location = value;
             }
         }
 
-        public string cit
-        {
-            get { return city; }
-            set
-            {
-                city = value;
-            }
-        }
-
-        public string sta
-        {
-            get { return state; }
-            set
-            {
-                state = value;
-            }
-        }
-
-        public string z
-        {
-            get { return zip; }
-            set
-            {
-                zip = value;
-            }
-        }
-
-        public Dictionary<Merchandise,int> Inven
+        public Dictionary<Merchandise,int/*quantity*/> Inven
         {
             get { return iven; }
         }
 
-        public Store(Address a, int id /*Inventory i*/)
+        public Store(string a, int id)
         {
-            street = a.Street;
-            city = a.City;
-            state = a.State;
-            zip = a.Zip;
+            Location = a;
             ID = id;
-            iven = new Dictionary<Merchandise, int>() { };
-            //ivenID = i.InventoryID;
+            iven = new Dictionary<Merchandise, int/*quantity*/>() { };
         }
 
         /*public bool CheckStoreValid()
@@ -82,25 +51,20 @@ namespace Project0.Library
                 return false;
         }*/
 
-        /*public Address GetStoreAddress()
-        {
-            return Address;
-        }*/
-
         public bool AddNewItem(Merchandise item, int quantity)
         {
             if (item == null)
                 return false;
             bool exist = false;
-            foreach(KeyValuePair<Merchandise,int> i in iven)
+            foreach (KeyValuePair<Merchandise, int> i in iven)
             {
-                if(i.Key == item)
+                if (i.Key == item)
                 {
                     exist = true;
                     break;
                 }
             }
-            if(exist)
+            if (exist)
             {
                 Console.WriteLine("I already got this item in stock, how many you want");
                 return false;
@@ -115,20 +79,22 @@ namespace Project0.Library
         {
             foreach (KeyValuePair<Merchandise,int> item in iven)
             {
-                if (item.Value == id)
+                if (item.Key.MerchID == id)
                     return true;
             }
             return false;
         }
         public bool ChangeStock(Merchandise merch, int amount)
         {
-            foreach (KeyValuePair<Merchandise,int> item in iven)
+            int value = 0;
+            foreach (KeyValuePair<Merchandise, int> item in iven)
             {
-                if(item.Key == merch)
+                value = item.Value + amount;
+                if (item.Key.MerchID == merch.MerchID)
                 {
-                    if(item.Value + amount > 0)
+                    if (item.Value + amount > 0)
                     {
-                        iven[merch] = item.Value + amount;
+                        iven[item.Key] = value;
                         return true;
                     }
                     else
@@ -153,7 +119,7 @@ namespace Project0.Library
 
         public override string ToString()
         {
-            return $"\tID : {StoreID} \n\tADDRESS: {st} " + $" {cit}" + $" {sta}" + $" {z}";
+            return $"\tID : {StoreID} \n\tADDRESS: {Location}";
         }
     }
 }

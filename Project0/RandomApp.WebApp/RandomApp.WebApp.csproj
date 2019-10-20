@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>b08bd601-b093-4cd3-a697-25fdeadc947a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EntityFramework.DataAccess\EntityFramework.DataAccess.csproj" />
+    <ProjectReference Include="..\Project0.Library\Project0.Library.csproj" />
+    <ProjectReference Include="..\Project0Tests\Project0Tests.csproj" />
+    <ProjectReference Include="..\Project0\Project0.csproj" />
+  </ItemGroup>
+
+</Project>

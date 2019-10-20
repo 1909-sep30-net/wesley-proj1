@@ -13,9 +13,6 @@ namespace EntityFramework.DataAccess.Entities
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int StoreId { get; set; }
-        public string Merch { get; set; }
-        public int MerchAmount { get; set; }
-        public decimal Price { get; set; }
         public DateTime OrderTime { get; set; }
 
         public virtual Customer Customer { get; set; }

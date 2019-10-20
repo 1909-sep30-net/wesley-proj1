@@ -9,6 +9,7 @@ namespace Project0.Library
         private Customer Name;
         private Store Merch;
         private int orderId;
+        private int stock;
 
         public Customer customer
         {
@@ -37,11 +38,21 @@ namespace Project0.Library
             }
         }
 
-        public OrderDetails(Customer a, Store b, int c)
+        public int OrStock
+        {
+            get { return stock; }
+            set
+            {
+                stock = value;
+            }
+        }
+
+        public OrderDetails(Customer a, Store b, int c, int s)
         {
             Name = a;
             Merch = b;
             orderId = c;
+            stock = s;
         }
     }
 }

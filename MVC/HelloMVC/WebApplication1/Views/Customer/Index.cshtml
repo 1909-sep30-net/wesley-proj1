@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@*two kinds of views: strongly-typed and weakly/loosely-typed*@
+@*without the @model directive, this would be a weakly-typed view*@
+@*that @model directive enforces that this view accepts exactly that type as its model*@
+
+@*for weakly-typed views, the model property is of type "dynamic"*@
+@*this is a special C# type which turns off all compile-time type checking*@
+@*it pretty much works like a JS object*@
+
+<h1>Index</h1>
+
+@*this is a Razor comment*@
+@*each instance of a view can be passed one object containing
+    all the data it wants to display. that is called the "model of the view
+    and it's accessible here as "model"*@
+
+@*let's assume that model is a List<Customer>*@
+
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+        @*model is null if you don't pass a method for it*@
+        @foreach (Customer cust in Model)
+        {
+            <tr>
+                @*when you do @(1+1) - that's "Razor Expression"*@
+                @*the C# expression after the @ is evaluated, and then convered to a string*@
+                @*the string is HTML-escapred, and then placed on the page*@
+                <td>@cust.Id</td>
+                <td>@cust.Name</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

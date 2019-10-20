@@ -14,15 +14,15 @@ namespace EntityFramework.DataAccess.Repo
         public MerchRep(Entities.Project0Context dbcontext) =>
             _context = dbcontext ?? throw new ArgumentNullException(nameof(dbcontext));
 
-        public IEnumerable<lib.Merchandise> GetMerch(string merch)
+        public IEnumerable<lib.Merchandise> GetMerch(int merch)
         {
-            IQueryable<Entities.Product> items = _context.Product
+            IQueryable<Entities.Merchandise> items = _context.Merchandise
                 .Include(p => p.OrderDetails).AsNoTracking()
                 .Include(p => p.Inventory)
                     .ThenInclude(i => i.Location);
 
-            if (merch != null)
-                items = items.Where(p => p.Name == merch);
+            if (merch != 0)
+                items = items.Where(p => p.Id == merch);
 
             return items.Select(Mapper.MapMerch);
         }

@@ -1,0 +1,11 @@
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\bin\Debug\netstandard2.0\demo.DataAccess.deps.json
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\bin\Debug\netstandard2.0\demo.DataAccess.dll
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\bin\Debug\netstandard2.0\demo.DataAccess.pdb
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\bin\Debug\netstandard2.0\demo.Library.dll
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\bin\Debug\netstandard2.0\demo.Library.pdb
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\obj\Debug\netstandard2.0\demo.DataAccess.csprojAssemblyReference.cache
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\obj\Debug\netstandard2.0\demo.DataAccess.AssemblyInfoInputs.cache
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\obj\Debug\netstandard2.0\demo.DataAccess.AssemblyInfo.cs
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\obj\Debug\netstandard2.0\demo.DataAccess.csproj.CopyComplete
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\obj\Debug\netstandard2.0\demo.DataAccess.dll
+C:\revature\wesley-proj1\MVC\demo\demo.DataAccess\obj\Debug\netstandard2.0\demo.DataAccess.pdb

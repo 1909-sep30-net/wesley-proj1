@@ -25,7 +25,7 @@ namespace EntityFramework.DataAccess.Repo
         public void AddOrder(lib.Order oi)
         {
             var info = Mapper.MapOD(oi, oi.OrderID);
-            foreach (Entities.OrderInfo item in info)
+            foreach (Entities.OrderDetails item in info)
             {
                 _context.Add(item);
             }
@@ -35,27 +35,33 @@ namespace EntityFramework.DataAccess.Repo
         {
             IQueryable<Entities.OrderInfo> items = _context.OrderInfo
                 .Include(r => r.OrderDetails)
-                    .ThenInclude(d => d.ProductNameNavigation);
+                    .ThenInclude(d => d.Merch)
+                .Include(r => r.Customer)
+                .Include(r => r.Store);
 
             return items.Select(Mapper.MapOrder);
         }
 
-        public IEnumerable<lib.Order> GetOrdersByName(string id)
+        /*public IEnumerable<lib.Order> GetOrdersByName(int id)
         {
             IQueryable<Entities.OrderInfo> items = _context.OrderInfo
                 .Include(r => r.OrderDetails)
-                    .ThenInclude(d => d.ProductNameNavigation)
-                .Where(r => r.Merch == id);
+                    .ThenInclude(d => d.Merch)
+                .Where(r => r.Id == id);
 
             return items.Select(Mapper.MapOrder);
-        }
+        }*/
 
         public IEnumerable<lib.Order> GetOrdersByCust(int id)
         {
             IQueryable<Entities.OrderInfo> items = _context.OrderInfo
                 .Include(r => r.OrderDetails)
-                    .ThenInclude(d => d.ProductNameNavigation)
+                    .ThenInclude(d => d.Merch)
+                .Include(od => od.Customer)
+                .Include(od => od.Store)
                 .Where(r => r.CustomerId == id);
+
+            List<lib.Order> od = items.Select(Mapper.MapOrder).ToList();
 
             return items.Select(Mapper.MapOrder);
         }
@@ -64,7 +70,9 @@ namespace EntityFramework.DataAccess.Repo
         {
             IQueryable<Entities.OrderInfo> items = _context.OrderInfo
                 .Include(r => r.OrderDetails)
-                    .ThenInclude(d => d.ProductNameNavigation)
+                    .ThenInclude(d => d.Merch)
+                .Include(r => r.Store)
+                .Include(r => r.Customer)
                 .Where(r => r.StoreId == id);
 
             return items.Select(Mapper.MapOrder);

@@ -17,7 +17,7 @@ namespace EntityFramework.DataAccess.Repo
         public IEnumerable<lib.Customer> GetCustomers(string fname = null, string lname = null, int cusid = -1)
         {
             IQueryable<Entities.Customer> person = _context.Customer
-                .Include(c => c.OrderInfo).AsNoTracking();
+                .Include(c => c.OrderInfo);
 
             if (fname != null)
                 person = person.Where(c => c.FirstName.Contains(fname));

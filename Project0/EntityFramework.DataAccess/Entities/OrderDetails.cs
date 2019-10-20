@@ -5,11 +5,12 @@ namespace EntityFramework.DataAccess.Entities
 {
     public partial class OrderDetails
     {
-        public string Name { get; set; }
+        public int Phold { get; set; }
         public int OrderId { get; set; }
-        public string ProductName { get; set; }
+        public int MerchId { get; set; }
+        public int Stock { get; set; }
 
+        public virtual Merchandise Merch { get; set; }
         public virtual OrderInfo Order { get; set; }
-        public virtual Product ProductNameNavigation { get; set; }
     }
 }

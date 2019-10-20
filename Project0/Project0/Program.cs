@@ -50,7 +50,7 @@ namespace Project0
             string connectionString = lib.SecretConfig.ConnectionString;
 
             var options = new DbContextOptionsBuilder<Project0Context>();
-                options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString);
             var dbContext = new Project0Context(options.Options);
 
             Run(dbContext);
@@ -66,73 +66,79 @@ namespace Project0
 
             while (true)
             {
+                var input = "";
                 Console.Clear();
-                Console.WriteLine("Manager\n");
+                Console.WriteLine("Welcome to the Shop of Random");
                 Console.WriteLine();
+                Console.WriteLine("1: Add a body");
+                Console.WriteLine("2: Search for Something");
+                Console.WriteLine("3: Add an Order");
+                Console.WriteLine("4: Fare Thee Well");
+                Console.WriteLine();
+                Console.WriteLine("What you want?");
+                input = Console.ReadLine();
 
-                Console.WriteLine("1:\tAdd a body");
-                Console.WriteLine("2:\tStart a Search");
-                Console.WriteLine("3:\tWant to Order Something?");
-                Console.WriteLine("4:\tFare Thee Well");
-                Console.WriteLine();
-                Console.WriteLine("What do you want to do?");
-                var input = Console.ReadLine();
-                if(input == "1")
+                if (input == "1")
                 {
-                    string fname = null;
-                    string lname = null;
+                    string fname = null, lname = null;
 
                     Console.Clear();
-                    Console.WriteLine("Adding a Customer\n");
-
-                    while(fname == null)
+                    Console.WriteLine("Adding a Sith");
+                    while (fname == null)
                     {
-                        Console.Write("Enter First name: ");
+                        Console.WriteLine("Enter First Name: ");
                         fname = Console.ReadLine();
-                        if (fname == "")
+                        if(fname == "")
+                        {
                             fname = null;
+                        }
                     }
+                    Console.WriteLine();
                     while (lname == null)
                     {
-                        Console.Write("Enter Last name: ");
+                        Console.WriteLine("Enter Last Name: ");
                         lname = Console.ReadLine();
-                        if (lname == "")
+                        if(lname == "")
+                        {
                             lname = null;
+                        }
                     }
-                    Console.WriteLine($"\nCreating a new Customer with \nFirst Name: {fname}\nLast Name: {lname}");
+                    Console.WriteLine($"\nCreating a new Jedi with \nFirst name: {fname}\nLast Name: {lname}");
 
                     try
                     {
-                        var newCus = new lib.Customer(fname, lname);
-                        CusCon.AddCust(newCus);
+                        var cus = new lib.Customer(fname, lname);
+                        CusCon.AddCust(cus);
                         CusCon.why();
-                        var dbCusId = CusCon.GetCustomers(fname, lname).Last().CustomerID;
-                        Console.WriteLine($"Customer has been added.\nID: {dbCusId}");
+                        var cusid = CusCon.GetCustomers(fname, lname).Last().CustomerID;
+                        Console.WriteLine();
+                        Console.WriteLine("Instructions Unclear.");
+                        Console.WriteLine($"Sith has been added.\nID: {cusid}");
 
-                        Console.WriteLine("Press a key to keep going");
+                        Console.WriteLine("Press a key to move along");
                         Console.ReadKey();
                     }
-                    catch(ArgumentException ex)
+                    catch (ArgumentException ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
                 }
-                else if(input == "2")
+                else if (input == "2")
                 {
-                    while(true)
+                    while (true)
                     {
                         Console.Clear();
-                        Console.WriteLine("Search for something Screen");
-
-                        Console.WriteLine("1:\tSearch for Customer");
-                        Console.WriteLine("2:\tSearch for Store");
-                        Console.WriteLine("3:\tSearch for Orders for Customer");
-                        Console.WriteLine("4:\tSearch for Orders for Store");
-                        Console.WriteLine("5:\tSearch for Order Details");
-                        Console.WriteLine("6:\tLet Me Out");
+                        Console.WriteLine("Search");
                         Console.WriteLine();
 
-                        Console.WriteLine("What do you want to do?");
+                        Console.WriteLine("1: Search For Customer");
+                        Console.WriteLine("2: Search Store");
+                        Console.WriteLine("3: Search Customer Orders");
+                        Console.WriteLine("4: Search Store Orders");
+                        Console.WriteLine("5: Return to Sender");
+                        Console.WriteLine();
+
+                        Console.WriteLine("What you want?");
                         var input2 = Console.ReadLine();
                         if (input2 == "1")
                         {
@@ -161,19 +167,19 @@ namespace Project0
                             Console.WriteLine("\nPress something to continue");
                             Console.ReadKey();
                         }
-                        else if(input2 == "2")
+                        else if (input2 == "2")
                         {
                             Console.Clear();
                             Console.WriteLine("Store: \n");
                             var sto = StoCon.GetStores().ToList();
                             foreach (lib.Store item in sto)
                             {
-                                Console.WriteLine(item.ToString() + "\n");
+                                Console.WriteLine(item.ToString() + item.InventoryToString() + "\n");
                             }
                             Console.WriteLine("\nPunch a key to keep moving");
                             Console.ReadKey();
                         }
-                        else if(input2 == "3")
+                        else if (input2 == "3")
                         {
                             string input2key;
                             int custId = 0;
@@ -189,13 +195,17 @@ namespace Project0
                             }
                             while (!isInt);
 
-                            var results = OrdCon.GetOrdersByCust(id: custId).ToList();
+                            var results = OrdCon.GetOrdersByCust(custId).ToList();
                             if (results.Count > 0)
                             {
                                 foreach (lib.Order ord in results)
                                 {
                                     Console.WriteLine(ord.ToString() + "\n");
                                 }
+                                /*foreach(lib.Order or in results)
+                                {
+                                    Console.WriteLine(or.OrderToString() + "\n");
+                                }*/
                             }
                             else
                                 Console.WriteLine($"No results matching CustomerID {custId}");
@@ -232,43 +242,18 @@ namespace Project0
                             Console.ReadKey();
 
                         }
+                        
                         else if (input2 == "5")
                         {
-                            string input2key;
-                            string ordId = null;
-                            bool isInt = false;
-                            do
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Display Details of an Order:\n");
-
-                                Console.Write("Enter a Order ID: ");
-                                input2key = Console.ReadLine();
-                                ordId = input2key;
-                            }
-                            while (!isInt);
-
-                            var result = OrdCon.GetOrdersByName(ordId).ToList().FirstOrDefault();
-                            if (result == null)
-                            {
-                                Console.WriteLine($"No results matching OrderID {ordId}");
-                            }
-                            else
-                            {
-                                Console.WriteLine(result.ToString());
-                                Console.WriteLine(result.OrderToString());
-                            }
-                            Console.WriteLine("Press any key to continue.");
+                            Console.Clear();
+                            Console.WriteLine("Returning to Mother");
+                            Console.WriteLine("Press to continue");
                             Console.ReadKey();
-
-                        }
-                        else if (input2 == "6")
-                        {
                             break;
                         }
                     }
                 }
-                else if(input == "3")
+                else if (input == "3")
                 {
                     string inputStr;
                     int custId = 0;
@@ -288,7 +273,6 @@ namespace Project0
                     while (!isInt);
 
                     var cust = CusCon.GetCustomers(cusid: custId).FirstOrDefault();
-
                     if (cust == null)
                     {
                         Console.WriteLine($"Customer {custId} does not exist.");
@@ -334,12 +318,6 @@ namespace Project0
                         string answer = Console.ReadLine();
                         if (answer.ToUpper() == "YES")
                         {
-                            /*Console.WriteLine("dirt");
-                            Console.WriteLine("animal");
-                            Console.WriteLine("box");
-                            Console.WriteLine();
-                            Console.WriteLine("What item do you want to order");
-                            mName = Console.ReadLine();*/
                             break;
                         }
                         else if (answer.ToUpper() == "NO")
@@ -355,19 +333,19 @@ namespace Project0
                         try
                         {
                             var ord = new lib.Order(cust, loc, 0);
-                            /*OrdCon.Order(ord);
-                            OrdCon.EndMe();*/
-                            //var ord = OrdCon.GetOrdersByCust(cust.CustomerID).Last();
+                            OrdCon.Order(ord);
+                            OrdCon.EndMe();
+                            ord = OrdCon.GetOrdersByCust(cust.CustomerID).Last();
 
 
-                            string merch = null;
+                            int prodId = 0;
 
                             bool done = false;
                             do
                             {
                                 do
                                 {
-                                    //merch = null;
+                                    prodId = 0;
 
                                     Console.Clear();
                                     Console.WriteLine("Place an Order Menu\n");
@@ -377,10 +355,10 @@ namespace Project0
                                     Console.WriteLine("Store inventory:");
                                     Console.WriteLine(loc.InventoryToString());
                                     Console.WriteLine();
-                                    Console.WriteLine("Your order:");
+                                    Console.WriteLine("Your box:");
                                     Console.WriteLine(ord.OrderToString());
 
-                                    Console.Write("Enter a Product name, or DONE if finished: ");
+                                    Console.Write("Enter a Product Id, or DONE if finished: ");
                                     inputStr = Console.ReadLine();
                                     if (inputStr.ToUpper() == "DONE")
                                     {
@@ -389,16 +367,16 @@ namespace Project0
                                     }
                                     else
                                     {
-                                        merch = inputStr;
+                                        isInt = Int32.TryParse(inputStr, out prodId);
                                     }
                                 }
                                 while (!isInt);
                                 if (!done)
                                 {
-                                    var prod = MerCon.GetMerch(merch: merch).FirstOrDefault();
+                                    var prod = MerCon.GetMerch(prodId).FirstOrDefault();
                                     if (prod == null)
                                     {
-                                        Console.WriteLine($"Merch {merch} does not exist");
+                                        Console.WriteLine($"Merch {prodId} does not exist");
                                         Console.WriteLine("\nPress any key to continue.");
                                         Console.ReadKey();
                                     }
@@ -429,8 +407,6 @@ namespace Project0
                                         }
                                     }
                                 }
-                                ord = new lib.Order(cust, loc, 0, DateTime.Now, merch);
-                                OrdCon.Order(ord);
                             }
                             while (!done);
                             OrdCon.AddOrder(ord);
@@ -444,188 +420,35 @@ namespace Project0
                         catch (ArgumentNullException ex)
                         {
                             Console.WriteLine(ex.Message);
-                            
+
                         }
                     }
                     Console.WriteLine("\nPress any key to continue.");
                     Console.ReadKey();
                 }
-                else if(input == "4")
+                else if (input == "4")
                 {
-                    Console.WriteLine("Alright, See you next time");
-                    Console.WriteLine("\n Press any key to leave");
+                    Console.Clear();
+                    Console.WriteLine("Processing request...");
+                    Console.WriteLine();
+                    Console.WriteLine("Press to continue.");
                     Console.ReadKey();
                     break;
                 }
-            }
-        }
-
-        /*public void Menu()
-        {
-            *//*string quit;
-            int menu = 0;
-            Console.WriteLine("Welcome to Stores Store");
-            Console.WriteLine("What you want");
-            Console.WriteLine("1. Place order");
-            Console.WriteLine("2. Add Customer");
-            Console.WriteLine("3. Add Store");
-            Console.WriteLine("4. Exit");
-            Console.WriteLine("-----------------------");
-
-            do
-            {
-                Console.WriteLine("Enter a number between 1 and 4 or q to quit");
-                quit = Console.ReadLine();
-                if(quit != "q")
+                else
                 {
-                    menu = Int32.Parse(quit);
-                    if (menu < 1 || menu > 4)
+                    Console.WriteLine("Instructions unclear.");
+                    Console.WriteLine("Activating Skynet.");
+                    Console.WriteLine("Continue? (Y/N)");
+                    var p = Console.ReadLine();
+                    Console.Clear();
+                    if (p == "y")
                     {
-                        Console.WriteLine("input must be between 1 and 4");
+                        Console.WriteLine("I'm Sorry Jon.");
+                        break;
                     }
                 }
-            } while (menu < 1 || menu > 4 || quit != "q");
-
-            switch (menu)
-            {
-                //place order
-                case 1:
-                    PlaceOrder();
-                    break;
-
-                //customer info
-                case 2:
-                    AddCustomer();
-                    break;
-
-                //Store info and inventory
-                case 3:
-                    StoreInfo();
-                    break;
-                default:
-                    Console.WriteLine("Please come again soon.");
-                    break;
-            }*//*
-        }
-
-        public void PlaceOrder()
-        {
-            *//*int merch = 0;
-            string quit;
-            double time = 0;
-            string box = "box", hat = "hat", shoe = "shoe";
-            double bp = 3.20, hp = 5.90, sp = 1.50;
-            Console.WriteLine("The products we have are: ");
-            Console.WriteLine("1. Box at $3.20");
-            Console.WriteLine("2. Hat at $5.90");
-            Console.WriteLine("3. Shoe at $1.50");
-            Merchandise b = new Merchandise(box, bp);
-            Merchandise h = new Merchandise(hat, hp);
-            Merchandise s = new Merchandise(shoe, sp);
-            List<Merchandise> merchList = new List<Merchandise>();
-
-            do
-            {
-                Console.WriteLine("Enter a number between 1 and 3 or q to quit");
-                quit = Console.ReadLine();
-                if(quit != "q")
-                {
-                    merch = Int32.Parse(quit);
-                    if (merch < 1 || merch > 3)
-                    {
-                        Console.WriteLine("input not between 1 and 3");
-                    }
-                }
-            } while (merch < 1 || merch > 3 || quit != "q");
-
-            switch (merch)
-            {
-                case 1:
-                    merchList.Add(b);
-                    break;
-                case 2:
-                    merchList.Add(h);
-                    break;
-                case 3:
-                    merchList.Add(s);
-                    time = Convert.ToDouble(Stopwatch.GetTimestamp());
-                    break;
-                default:
-                    Console.WriteLine("no order placed");
-                    break;
             }
-
-            a = new Order(customer, k, time, merchList);
-            Console.Clear();
-            Menu();*//*
         }
-
-        public void AddCustomer()
-        {
-           *//* string FirstName, LastName;//, CustStreet, CustCity, CustState, CustZip;
-
-            Console.WriteLine("Enter First Name of Customer: ");
-            FirstName = Console.ReadLine();
-            Console.WriteLine("Enter Last Name of Customer: ");
-            LastName = Console.ReadLine();
-            *//*Console.WriteLine("Enter Street of Customer Address");
-            CustStreet = Console.ReadLine();
-            Console.WriteLine("Enter City of Customer Address");
-            CustCity = Console.ReadLine();
-            Console.WriteLine("Enter State of Customer Address");
-            CustState = Console.ReadLine();
-            Console.WriteLine("Enter Zip of Customer Address");
-            CustZip = Console.ReadLine();*/
-
-        /* Address CustAddress = new Address(CustStreet, CustCity, CustState, CustZip);*/
-        /*Customer customer = new Customer(FirstName, LastName, CustAddress);*//*
-        customer = new Customer(FirstName, LastName);
-
-       *//* Console.Clear();
-        Menu();*/
     }
-
-       /* public void StoreInfo()
-        {
-
-            *//*string name;
-            int num ;
-
-            Console.WriteLine("What is the Store name?");
-            name = Console.ReadLine();
-            Console.WriteLine("What is the Store number?");
-            num = Int32.Parse(Console.ReadLine());
-
-            k = new Store(name, num);*/
-            /*string StoreStreet, StoreCity, StoreState, StoreZip;
-            Merchandise m;
-            List<Merchandise> n = new List<Merchandise>();
-            string merchName;
-            double merchPrice;
-            string q = null;
-
-            Console.WriteLine("Enter Street of Store Address");
-            StoreStreet = Console.ReadLine();
-            Console.WriteLine("Enter City of Store Address");
-            StoreCity = Console.ReadLine();
-            Console.WriteLine("Enter State of Store Address");
-            StoreState = Console.ReadLine();
-            Console.WriteLine("Enter Zip of Store Address");
-            StoreZip = Console.ReadLine();
-
-            while (q != "q")
-            {
-                Console.WriteLine("Enter Product Name");
-                merchName = Console.ReadLine();
-                Console.WriteLine("Enter Product Price");
-                merchPrice = Convert.ToDouble(Console.ReadLine());
-                m = new Merchandise(merchName, merchPrice);
-                n.Add(m);
-                Console.WriteLine("Type q to quit");
-                q = Console.ReadLine();
-            }
-            Address StoreAddress = new Address(StoreStreet, StoreCity, StoreState, StoreZip);
-            Inventory c = new Inventory(n);
-            Store store = new Store(StoreAddress, c);*//*
-        }*/
 }

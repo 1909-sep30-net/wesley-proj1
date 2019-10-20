@@ -10,7 +10,6 @@ namespace Project0.Library
         private Customer cust;
         private Store sto;
         private int id;
-        private string merch;
         private DateTime orderTime;
 
         public Dictionary<Merchandise, int> details;
@@ -24,15 +23,6 @@ namespace Project0.Library
                     throw new ArgumentNullException("I require a real customer");
                 else
                     cust = value;
-            }
-        }
-
-        public string Prod
-        {
-            get { return merch; }   
-            set
-            {
-                merch = value;
             }
         }
 
@@ -71,16 +61,14 @@ namespace Project0.Library
             cust = a;
             sto = b;
             id = c;
-            merch = null;
             details = new Dictionary<Merchandise, int>() { };
             orderTime = DateTime.Now;
         }
-        public Order(Customer a, Store b, int c, DateTime DT, string m)
+        public Order(Customer a, Store b, int c, DateTime DT)
         {
             cust = a;
             sto = b;
             id = c;
-            merch = m;
             details = new Dictionary<Merchandise, int>() { };
             orderTime = DT;
         }
@@ -89,7 +77,7 @@ namespace Project0.Library
         {
             foreach (KeyValuePair<Merchandise, int> item in details)
             {
-                if (item.Key.MerchName == merch.MerchName)
+                if (item.Key.MerchID == merch.MerchID)
                 {
                     if (item.Value + quantity >= 0)
                     {
@@ -119,9 +107,9 @@ namespace Project0.Library
         }
 
         /// <summary>
-        /// Calculated the number of items in the basket.
+        /// Calculated the number of items in the order.
         /// </summary>
-        /// <returns>The number of items in the basket</returns>
+        /// <returns>The number of items in the order</returns>
         public int CalcNumInOrder()
         {
             int result = 0;
@@ -150,132 +138,5 @@ namespace Project0.Library
                 $"\n\tTimestamp: {this.orderTime}\n\tNumber of Items: {this.CalcNumInOrder()}" +
                 $"\n\tTotal Cost: {this.CalcPriceOfOrder()}";
         }
-
-        //private list<string> orders = new list<string>();
-        //public void ordernumber()
-        //{
-
-        //}
-        //public void add(string item)
-        //{
-        //    orders.add(item);
-        //}
-        //public void remove(string item)
-        //{
-        //    orders.remove(item);
-        //}
-
-        //Information about the order
-        /*public Store Store {get; set;}
-        public Customer Customer { get; set;}
-        public double OrderTime { get; set; }
-        public Merchandise m { get; set; }
-
-
-        public Order(Customer cust, Store sto, double time, Merchandise n)
-        {
-            Customer = cust;
-            Store = sto;
-            OrderTime = time;
-            m = n;
-        }*/
-
-        /*private int ID, custID, StoID, amount;
-        private decimal price;
-        private string merch;
-        private DateTime ti;
-
-        public int order
-        {
-            get { return ID; }
-            set
-            {
-                ID = value;
-            }
-        }
-        public int customer
-        {
-            get { return custID; }
-            set
-            {
-                custID = value;
-            }
-        }
-        public int store
-        {
-            get { return StoID; }
-            set
-            {
-                StoID = value;
-            }
-        }
-        public int ProdAmount
-        {
-            get { return amount; }
-            set
-            {
-                if (amount < 0)
-                    throw new ArgumentOutOfRangeException("Please do not go below 0");
-                else
-                    amount = value;
-            }
-        }
-        public decimal cost
-        {
-            get { return price; }
-            set
-            {
-                price = value;
-            }
-        }
-        public string name
-        {
-            get { return merch; }
-            set
-            {
-                if (value == null || value == "")
-                    throw new ArgumentNullException("I need an actual name for a product");
-                else if (value.Length > 50)
-                    throw new ArgumentOutOfRangeException("The name you just gave is too long");
-                else
-                    merch = value;
-            }
-        }
-        public DateTime t
-        {
-            get { return ti; }
-            set
-            {
-                ti = value;
-            }
-        }
-
-        public Order(int a, int b, int c, int d, decimal x, string y, DateTime z)
-        {
-            ID = a;
-            custID = b;
-            StoID = c;
-            amount = d;
-            price = x;
-            merch = y;
-            ti = z;
-        }*/
-
-        //check order address and validity of order
-        /* public Address OrderStoreAddress()
-         {
-             Console.WriteLine("Store's Address is: " + Store.GetStoreAddress());
-             return Store.GetStoreAddress();
-         }
-
-         public bool IsOrderValid()
-         {
-             if (Customer != null && Store != null && m != null && OrderTime >= 0)
-             {
-                 return true;
-             }
-             else
-                 return false;
-         }*/
     }
 }

@@ -18,12 +18,12 @@ namespace EntityFramework.DataAccess.Repo
         {
             IQueryable<Entities.Store> sto = _context.Store
                 .Include(s => s.Inventory)
-                    .ThenInclude(i => i.NameNavigation)
+                    .ThenInclude(i => i.Merch)
                 .Include(s => s.OrderInfo);
 
             if (id != -1)
                 sto = sto.Where(s => s.Id == id);
-            
+
 
             return sto.Select(Mapper.MapStore);
         }
