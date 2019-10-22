@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RandomApp.WebApp.Models.StoreMod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Stores</h1>
+
+@*<div>
+    <h4>StoreMod</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Loc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Loc)
+        </dd>
+    </dl>
+</div>*@
+<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Loc)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayName(item.ID.ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayName(item.Loc)
+                    </td>
+                </tr>
+            }
+        </tbody>
+ </table>

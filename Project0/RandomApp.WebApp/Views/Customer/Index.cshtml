@@ -1,0 +1,41 @@
+﻿
+@model IEnumerable<Project0.Library.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@*<p>
+    <a asp-action="CustCreate" role="button" class="btn btn-secondary btn-lg btn-block"> Add a Body</a>
+    <a asp-action="Search" role="button" class="btn btn-secondary btn-lg btn-block"> Search for a Body</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FullName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { })
+                    @Html.ActionLink("Details", "Details", new { })
+                    @Html.ActionLink("Delete", "Delete", new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

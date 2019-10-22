@@ -21,10 +21,10 @@ go
 
 --drop table Proj0.OrderDetails
 create table Proj0.OrderDetails(
-	PHold				int					not null			identity			primary key,
 	OrderID				int					not null								foreign key			references Proj0.OrderInfo		(ID),
 	MerchID				int					not null								foreign key			references Proj0.Merchandise	(ID),
-	Stock				int					not null
+	Stock				int					not null,
+	constraint PK_OrdDet primary key (OrderID, MerchID)
 );
 go
 
@@ -46,10 +46,10 @@ go
 
 --drop table Proj0.Inventory
 create table Proj0.Inventory(
-	PHold				int					not null			identity			primary key,
 	MerchID				int					not null								foreign key			references Proj0.Merchandise	(ID),
 	LocationID			int					not null								foreign key			references Proj0.Store			(ID),
-	Stock				int					not null
+	Stock				int					not null,
+	constraint PK_Inven primary key(MerchID, LocationID)
 );
 go
 --drop table Proj0.Product
@@ -64,14 +64,16 @@ insert into Proj0.Store(Location) values
 ('321 sesame st Arlington TX 12345');
 
 insert into Proj0.Merchandise(Name, Price) values
-('Shape', 10),
-('Animal', 20),
-('Number', 100);
+('WhiteAss', 10),
+('BlackAss', 20),
+('GreyAss', 100);
 
 --update Proj0.Merchandise
---set Name = 'Shapes' where Name = 'Dirt';
+--set Name = 'WhiteAss' where Name = 'Shape';
 --update Proj0.Merchandise
---set Name = 'Number' where Name = 'Box';
+--set Name = 'BlackAss' where Name = 'Animal';
+--update Proj0.Merchandise
+--set Name = 'GreyAss' where Name = 'Number';
 
 
 insert into Proj0.Inventory(MerchID, LocationID, Stock) values 

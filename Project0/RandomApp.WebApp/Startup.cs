@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Project0.Library;
 using EntityFramework.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using EntityFramework.DataAccess.Repo;
+using Project0.Library.Repo;
 
 namespace RandomApp.WebApp
 {
@@ -32,6 +34,11 @@ namespace RandomApp.WebApp
             {
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<ICustomerRep, CustomerRep>();
+            services.AddScoped<IStoreRep, StoreRep>();
+            services.AddScoped<IOrderRep, OrderRep>();
+            services.AddScoped<IMerchRep, MerchRep>();
 
             services.AddControllersWithViews();
         }

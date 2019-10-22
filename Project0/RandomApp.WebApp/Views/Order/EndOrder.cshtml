@@ -1,0 +1,118 @@
+﻿@model IEnumerable<RandomApp.WebApp.Models.EndOrderViewMod>
+
+@{
+    ViewData["Title"] = "EndOrder";
+}
+
+<h1>EndOrder</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.merchID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.merchName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.merchPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.total)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.merchID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.merchName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.merchPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    @ViewData["BigTotal"]
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div>
+    <a asp-action="Create">Back to Orders</a>
+</div>
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.merchID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.merchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.merchPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.merchID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.merchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.merchPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

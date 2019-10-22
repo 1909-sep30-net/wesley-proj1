@@ -41,28 +41,26 @@ namespace EntityFramework.DataAccess.Entities
 
             modelBuilder.Entity<Inventory>(entity =>
             {
-                entity.HasKey(e => e.Phold)
-                    .HasName("PK__Inventor__DD3AC8857E484F6E");
+                entity.HasKey(e => new { e.MerchId, e.LocationId })
+                    .HasName("PK_Inven");
 
                 entity.ToTable("Inventory", "Proj0");
 
-                entity.Property(e => e.Phold).HasColumnName("PHold");
+                entity.Property(e => e.MerchId).HasColumnName("MerchID");
 
                 entity.Property(e => e.LocationId).HasColumnName("LocationID");
-
-                entity.Property(e => e.MerchId).HasColumnName("MerchID");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Inventory)
                     .HasForeignKey(d => d.LocationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Inventory__Locat__3552E9B6");
+                    .HasConstraintName("FK__Inventory__Locat__54CB950F");
 
                 entity.HasOne(d => d.Merch)
                     .WithMany(p => p.Inventory)
                     .HasForeignKey(d => d.MerchId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Inventory__Merch__345EC57D");
+                    .HasConstraintName("FK__Inventory__Merch__53D770D6");
             });
 
             modelBuilder.Entity<Merchandise>(entity =>
@@ -80,28 +78,26 @@ namespace EntityFramework.DataAccess.Entities
 
             modelBuilder.Entity<OrderDetails>(entity =>
             {
-                entity.HasKey(e => e.Phold)
-                    .HasName("PK__OrderDet__DD3AC885C41CF8EE");
+                entity.HasKey(e => new { e.OrderId, e.MerchId })
+                    .HasName("PK_OrdDet");
 
                 entity.ToTable("OrderDetails", "Proj0");
 
-                entity.Property(e => e.Phold).HasColumnName("PHold");
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
                 entity.Property(e => e.MerchId).HasColumnName("MerchID");
-
-                entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
                 entity.HasOne(d => d.Merch)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.MerchId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderDeta__Merch__3FD07829");
+                    .HasConstraintName("FK__OrderDeta__Merch__50FB042B");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderDeta__Order__3EDC53F0");
+                    .HasConstraintName("FK__OrderDeta__Order__5006DFF2");
             });
 
             modelBuilder.Entity<OrderInfo>(entity =>
@@ -120,13 +116,13 @@ namespace EntityFramework.DataAccess.Entities
                     .WithMany(p => p.OrderInfo)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderInfo__Custo__3B0BC30C");
+                    .HasConstraintName("FK__OrderInfo__Custo__4C364F0E");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.OrderInfo)
                     .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderInfo__Store__3BFFE745");
+                    .HasConstraintName("FK__OrderInfo__Store__4D2A7347");
             });
 
             modelBuilder.Entity<Store>(entity =>

@@ -4,10 +4,11 @@ using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using lib = Project0.Library;
+using Project0.Library.Repo;
 
 namespace EntityFramework.DataAccess.Repo
 {
-    public class MerchRep
+    public class MerchRep : IMerchRep
     {
         private readonly Entities.Project0Context _context;
 

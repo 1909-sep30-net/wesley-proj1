@@ -11,13 +11,28 @@ namespace EntityFramework.DataAccess
         {
             string a = store.Location;
             int c = store.Id;
+            
             Store k = new Store(a, c);
             foreach (Entities.Inventory i in store.Inventory)
             {
+                
                 var merch = MapMerch(i.Merch);
                 k.AddNewItem(merch, i.Stock);
             }
             return k;
+        }
+        public static Entities.Store MapStore(Store store)
+        {
+            var p = new List<Entities.Inventory> { };
+            foreach (KeyValuePair<Merchandise, int> item in store.iven)
+            {
+                p.Add(new Entities.Inventory { MerchId = item.Key.MerchID, Stock = item.Value, LocationId = store.StoreID});
+            }
+            return new Entities.Store
+            {
+                Id = store.StoreID,
+                Inventory = p
+            };
         }
 
         public static Customer MapCustomer(Entities.Customer cust)
@@ -47,6 +62,16 @@ namespace EntityFramework.DataAccess
         {
             Inventory i = new Inventory(iven.LocationId);
             return i;
+        }
+
+        public static Entities.Inventory MapInventory(Inventory iven)
+        {
+            return new Entities.Inventory
+            {
+                MerchId = iven.merch.MerchID,
+                LocationId = iven.Store,
+                Stock = iven.StockAmount
+            };
         }
 
         public static Order MapOrder(Entities.OrderInfo OI)

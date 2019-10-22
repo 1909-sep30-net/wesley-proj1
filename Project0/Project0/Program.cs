@@ -411,6 +411,8 @@ namespace Project0
                             while (!done);
                             OrdCon.AddOrder(ord);
                             OrdCon.EndMe();
+                            StoCon.UpdateStore(loc);
+                            StoCon.help();
 
                             Console.Clear();
                             Console.WriteLine($"Order Complete.\n");

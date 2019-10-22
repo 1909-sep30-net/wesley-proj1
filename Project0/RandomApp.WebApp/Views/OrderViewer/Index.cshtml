@@ -1,0 +1,56 @@
+﻿@model IEnumerable<RandomApp.WebApp.Models.OrderViewerMod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>OrderViewer</h1>
+
+
+<div>
+    <h3>Search by Customer</h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoLoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustID): @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StoID): @Html.DisplayFor(modelItem => item.StoLoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

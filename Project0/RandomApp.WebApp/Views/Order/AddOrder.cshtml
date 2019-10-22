@@ -1,0 +1,59 @@
+﻿@model IEnumerable<RandomApp.WebApp.Models.IvenViewMod>
+
+@{
+    ViewData["Title"] = "AddOrder";
+}
+
+<h1>AddOrder</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="AddOrder">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.merchID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.merchName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.merchPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.merchID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.merchName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.merchPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        <input name=@item.merchID type="text" value="Change Quantity" />
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <input type="submit" value="Submit" asp-action="AddOrder" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

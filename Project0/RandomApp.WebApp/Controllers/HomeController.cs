@@ -22,8 +22,7 @@ namespace RandomApp.WebApp.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult Customer()
         {
             return View();
         }

@@ -4,10 +4,11 @@ using System.Text;
 using lib = Project0.Library;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Project0.Library.Repo;
 
 namespace EntityFramework.DataAccess.Repo
 {
-    public class CustomerRep
+    public class CustomerRep : ICustomerRep
     {
         private readonly Entities.Project0Context _context;
 

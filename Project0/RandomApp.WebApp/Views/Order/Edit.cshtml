@@ -1,0 +1,41 @@
+﻿@model RandomApp.WebApp.Models.OrderViewMod
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<div>
+    <h4>OrderViewMod</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Customer Names")
+                </th>
+                <th>
+                    @Html.DisplayName("Store Location")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.custName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.stoLoc)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <a asp-action="AddOrder" class="btn btn-primary" >Continue</a>
+</div>
+<div>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    <a asp-action="Index">Back to List</a>
+</div>
