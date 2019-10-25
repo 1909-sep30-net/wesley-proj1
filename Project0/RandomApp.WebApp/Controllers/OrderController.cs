@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project0.Library.Repo;
@@ -11,10 +9,10 @@ namespace RandomApp.WebApp.Controllers
 {
     public class OrderController : Controller
     {
-        private IOrderRep irepOrig;
-        private ICustomerRep irepOrigCust;
-        private IStoreRep irepOrigSto;
-        private IMerchRep irepOrigMerch;
+        private readonly IOrderRep irepOrig;
+        private readonly ICustomerRep irepOrigCust;
+        private readonly IStoreRep irepOrigSto;
+        private readonly IMerchRep irepOrigMerch;
         public OrderController(IOrderRep irep, ICustomerRep irepCust, IStoreRep irepSto, IMerchRep irepMerch)
         {
             irepOrig = irep;
@@ -49,7 +47,7 @@ namespace RandomApp.WebApp.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                
                 if(Convert.ToInt32(collection["CustID"]) > 0)
                 {
                     int custID = Convert.ToInt32(collection["CustID"]);
@@ -106,7 +104,7 @@ namespace RandomApp.WebApp.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                
                 int stoID = Convert.ToInt32(TempData["StoID"]);
                 int custID = Convert.ToInt32(TempData["CustID"]);
                 lib.Store sto = irepOrigSto.GetStores(stoID).First();
@@ -119,22 +117,14 @@ namespace RandomApp.WebApp.Controllers
                 {
                     foreach (var iven in sto.iven)
                     {
-                        /*var a = irepOrigMerch.GetMerch(iven.Key.MerchID).First();
-                        ord.details.Add(a, Convert.ToInt32(item.Value));*/
-                        try
+                        
+                        if(iven.Key.MerchID == Convert.ToInt32(item.Key))
                         {
-                            if(iven.Key.MerchID == Convert.ToInt32(item.Key))
-                            {
-                                var a = irepOrigMerch.GetMerch(iven.Key.MerchID).First();
-                                ord.details.Add(a, Convert.ToInt32(item.Value));
-                                break;
-                            }
-                            
+                            var a = irepOrigMerch.GetMerch(iven.Key.MerchID).First();
+                            ord.details.Add(a, Convert.ToInt32(item.Value));
+                            break;
                         }
-                        catch
-                        {
 
-                        }
                     }
                 }
                 foreach (var item in ord.details)
@@ -183,8 +173,6 @@ namespace RandomApp.WebApp.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
                 return RedirectToAction(nameof(Index));
             }
             catch

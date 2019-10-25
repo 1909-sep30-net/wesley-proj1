@@ -12,7 +12,7 @@ namespace Project0.Library
         private int ID;
         private string Location;
 
-        public Dictionary<Merchandise, int/*quantity*/> iven;
+        private Dictionary<Merchandise, int/*quantity*/> ive;
 
         public int StoreID
         {
@@ -22,6 +22,8 @@ namespace Project0.Library
                 ID = value;
             }
         }
+
+        public Dictionary<Merchandise, int> iven { get { return ive; } set { ive = value; } }
 
         public string Loc
         {

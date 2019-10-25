@@ -12,7 +12,7 @@ namespace Project0.Library
         private int id;
         private DateTime orderTime;
 
-        public Dictionary<Merchandise, int> details;
+        private Dictionary<Merchandise, int> detail;
 
         public Customer OrderCust
         {
@@ -25,6 +25,8 @@ namespace Project0.Library
                     cust = value;
             }
         }
+
+        public Dictionary<Merchandise, int> details { get { return detail; } set { detail = value; } }
 
         public Store OrderSto
         {

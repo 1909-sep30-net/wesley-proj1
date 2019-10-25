@@ -9,7 +9,7 @@ namespace Project0.Library
         //return list of inventory
         //public Merchandise merch = new Merchandise();
 
-        public Merchandise merch;
+        private Merchandise mer;
 
         private int Amount;
         private int StoreID;
@@ -23,6 +23,8 @@ namespace Project0.Library
                 Amount = value;
             }
         }
+
+        public Merchandise merch { get { return mer; } set { mer = value; } }
 
         public int Store
         {
