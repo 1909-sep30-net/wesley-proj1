@@ -26,11 +26,13 @@ namespace Project0.Library
             Zip = z;
         }
 
+        //Added a console message here-Tri
         public bool CheckValidAddress()
         {
             if (Street != null && City != null && State != null && Zip != null)
                 return true;
             else
+                System.Console.WriteLine("That's not a valid address, try again.");
                 return false;
         }
     }
