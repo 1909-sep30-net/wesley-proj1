@@ -20,6 +20,7 @@ namespace Project0.Library
             }
         }
 
+        //I should of used a dictionary
         public Dictionary<Merchandise, int> details { get; set; }
 
         public Store OrderSto

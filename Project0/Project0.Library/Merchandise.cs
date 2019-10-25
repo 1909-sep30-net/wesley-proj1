@@ -20,7 +20,7 @@ namespace Project0.Library
                     Name = value;
             }
         }
-
+        //Hello Buddy
         public int MerchID { get; set; }
 
         public decimal MerchPrice { get; set; }
@@ -31,7 +31,7 @@ namespace Project0.Library
             Name = n;
             MerchID = i;
         }
-
+        //This is very nice default value
         public override string ToString()
         {
             string str = $"\n\tID: {MerchID} \n\tNAME: {this.Name} \n\tCost:{Math.Round(this.MerchPrice, 2)}";
