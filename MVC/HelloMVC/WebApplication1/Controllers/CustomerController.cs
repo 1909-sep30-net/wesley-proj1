@@ -7,6 +7,10 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    /// <summary>
+    /// Just try to add some comment here
+    /// pre-cheers to Project 2 boyz
+    /// </summary>
     public class CustomerController : Controller
     {
         //this is an action method
