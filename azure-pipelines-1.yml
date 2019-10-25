@@ -16,6 +16,13 @@ steps:
 # - script: dotnet build --configuration $(buildConfiguration)
 #   displayName: 'dotnet build $(buildConfiguration)'
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud-wesley'
+    organization: 'rev-test'
+    scannerMode: 'MSBuild'
+    projectKey: 'wesley-proj1'
+
 
 - script: 
           dotnet build Project0 --configuration $(buildConfiguration)
@@ -35,6 +42,12 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+
+- task: SonarCloudAnalyze@1
+  displayName: Run SonarCloud analysis
+
+- task: SonarCloudPublish@1
+  displayName: Publish SonarCloud quality gate result
 
 - task: DotNetCoreCLI@2
   displayName: dotnet publish + zip
