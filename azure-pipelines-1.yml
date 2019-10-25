@@ -22,6 +22,8 @@ steps:
     organization: 'rev-test'
     scannerMode: 'MSBuild'
     projectKey: 'wesley-proj1'
+    extraProperties: |
+        sonar.exclusions=**/lib/**
 
 
 - script: 
