@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Project0.Library
 {
@@ -9,10 +7,6 @@ namespace Project0.Library
     {
         private Customer cust;
         private Store sto;
-        private int id;
-        private DateTime orderTime;
-
-        private Dictionary<Merchandise, int> detail;
 
         public Customer OrderCust
         {
@@ -26,7 +20,7 @@ namespace Project0.Library
             }
         }
 
-        public Dictionary<Merchandise, int> details { get { return detail; } set { detail = value; } }
+        public Dictionary<Merchandise, int> details { get; set; }
 
         public Store OrderSto
         {
@@ -40,39 +34,25 @@ namespace Project0.Library
             }
         }
 
-        public int OrderID
-        {
-            get { return id; }
-            set
-            {
-                id = value;
-            }
-        }
+        public int OrderID { get; set; }
 
-        public DateTime time
-        {
-            get { return orderTime; }
-            set
-            {
-                orderTime = value;
-            }
-        }
-        
+        public DateTime time { get; set; }
+
         public Order(Customer a, Store b, int c)
         {
             cust = a;
             sto = b;
-            id = c;
+            OrderID = c;
             details = new Dictionary<Merchandise, int>() { };
-            orderTime = DateTime.Now;
+            time = DateTime.Now;
         }
         public Order(Customer a, Store b, int c, DateTime DT)
         {
             cust = a;
             sto = b;
-            id = c;
+            OrderID = c;
             details = new Dictionary<Merchandise, int>() { };
-            orderTime = DT;
+            time = DT;
         }
 
         public bool AdjustQuantity(Merchandise merch, int quantity)
@@ -135,9 +115,9 @@ namespace Project0.Library
 
         public override string ToString()
         {
-            return $"\nOrder ID: {this.id} \n\tCustomer ID: {this.cust.CustomerID}\tCustomer Name: {this.cust.FullName}" +
+            return $"\nOrder ID: {this.OrderID} \n\tCustomer ID: {this.cust.CustomerID}\tCustomer Name: {this.cust.FullName}" +
                 $"\n\tLocation ID: {this.OrderSto.StoreID}" +
-                $"\n\tTimestamp: {this.orderTime}\n\tNumber of Items: {this.CalcNumInOrder()}" +
+                $"\n\tTimestamp: {this.time}\n\tNumber of Items: {this.CalcNumInOrder()}" +
                 $"\n\tTotal Cost: {this.CalcPriceOfOrder()}";
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project0.Library.Repo;
@@ -10,10 +7,10 @@ namespace RandomApp.WebApp.Controllers
 {
     public class SearchStoreController : Controller
     {
-        private IOrderRep irepOrig;
-        private ICustomerRep irepOrigCust;
-        private IStoreRep irepOrigSto;
-        private IMerchRep irepOrigMerch;
+        private readonly IOrderRep irepOrig;
+        private readonly ICustomerRep irepOrigCust;
+        private readonly IStoreRep irepOrigSto;
+        private readonly IMerchRep irepOrigMerch;
         public SearchStoreController(IOrderRep irep, ICustomerRep irepCust, IStoreRep irepSto, IMerchRep irepMerch)
         {
             irepOrig = irep;

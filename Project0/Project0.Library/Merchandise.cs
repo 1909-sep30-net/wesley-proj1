@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Project0.Library
 {
     public class Merchandise
     {
         private string Name;
-        private int ID;
-        private decimal Price;
 
         public string MerchName
         {
@@ -24,35 +20,21 @@ namespace Project0.Library
                     Name = value;
             }
         }
-        
-        public int MerchID
-        {
-            get { return ID; }
-            set
-            {
-                ID = value;
-            }
-        }
 
-        public decimal MerchPrice
-        {
-            get { return Price; }
-            set
-            {
-                Price = value;
-            }
-        }
+        public int MerchID { get; set; }
+
+        public decimal MerchPrice { get; set; }
 
         public Merchandise(string n, decimal p, int i = 0)
         {
-            Price = p;
+            MerchPrice = p;
             Name = n;
-            ID = i;
+            MerchID = i;
         }
 
         public override string ToString()
         {
-            string str = $"\n\tID: {ID} \n\tNAME: {this.Name} \n\tCost:{Math.Round(this.Price, 2)}";
+            string str = $"\n\tID: {MerchID} \n\tNAME: {this.Name} \n\tCost:{Math.Round(this.MerchPrice, 2)}";
             return str;
         }
     }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Project0.Library
 {
@@ -8,7 +6,6 @@ namespace Project0.Library
     {
         private string firstName;
         private string lastName;
-        private int ID;
 
         public string FristName
         {
@@ -43,16 +40,13 @@ namespace Project0.Library
             get { return firstName + " " + lastName; }
         }
 
-        public int CustomerID
-        {
-            get { return ID; }
-        }
+        public int CustomerID { get; }
 
         public Customer(string fName, string lName, int custID = 0)
         {
             firstName = fName;
             lastName = lName;
-            ID = custID;
+            CustomerID = custID;
         }
 
         public override string ToString()

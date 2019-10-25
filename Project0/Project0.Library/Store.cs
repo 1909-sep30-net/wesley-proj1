@@ -1,38 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 
 namespace Project0.Library
 {
     public class Store
     {
-        //colorado, texas, georgia, arizona, florida
+        public int StoreID { get; set; }
 
-        private int ID;
-        private string Location;
+        public Dictionary<Merchandise, int> iven { get; set; }
 
-        private Dictionary<Merchandise, int/*quantity*/> ive;
-
-        public int StoreID
-        {
-            get { return ID; }
-            set
-            {
-                ID = value;
-            }
-        }
-
-        public Dictionary<Merchandise, int> iven { get { return ive; } set { ive = value; } }
-
-        public string Loc
-        {
-            get { return Location; }
-            set
-            {
-                Location = value;
-            }
-        }
+        public string Loc { get; set; }
 
         public Dictionary<Merchandise,int/*quantity*/> Inven
         {
@@ -41,8 +18,8 @@ namespace Project0.Library
 
         public Store(string a, int id)
         {
-            Location = a;
-            ID = id;
+            Loc = a;
+            StoreID = id;
             iven = new Dictionary<Merchandise, int/*quantity*/>() { };
         }
 
@@ -122,7 +99,7 @@ namespace Project0.Library
 
         public override string ToString()
         {
-            return $"\tID : {StoreID} \n\tADDRESS: {Location}";
+            return $"\tID : {StoreID} \n\tADDRESS: {Loc}";
         }
     }
 }
