@@ -11,6 +11,7 @@ namespace Project0.Library
 
         public int OrStock { get; set; }
 
+        //Need to have meaningful parameter names
         public OrderDetails(Customer a, Store b, int c, int s)
         {
             customer = a;

@@ -49,6 +49,7 @@ namespace Project0.Library
             CustomerID = custID;
         }
 
+        //Returns CustomerID, first, and last name
         public override string ToString()
         {
             return $"\tID:{CustomerID} \n\tFIRST NAME: {firstName} \n\tLAST NAME: {lastName}";
