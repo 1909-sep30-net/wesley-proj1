@@ -34,7 +34,7 @@ steps:
   displayName: dotnet test
   inputs:
     command: 'test'
-    projects: './RestaurantReviews'
+    projects: './wesley-proj1'
     arguments: '-c $(buildConfiguration) --collect "XPlat Code Coverage"'
 
 - task: PublishCodeCoverageResults@1
@@ -60,7 +60,7 @@ steps:
   displayName: App Service deploy
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Pay-As-You-Go(0518cd5b-d389-4983-9496-cdcae31dcc60)'
+    azureSubscription: 'Free Trial'
     appType: 'webApp'
-    WebAppName: 'restreviews1909'
+    WebAppName: 'RandomApp'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
