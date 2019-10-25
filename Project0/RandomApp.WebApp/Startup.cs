@@ -28,11 +28,9 @@ namespace RandomApp.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("Random");
-
             services.AddDbContext<Project0Context>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(Configuration.GetConnectionString("Random"));
             });
 
             services.AddScoped<ICustomerRep, CustomerRep>();
