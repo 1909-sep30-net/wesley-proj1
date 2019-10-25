@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\EntityFramework.DataAccess\EntityFramework.DataAccess.csproj" />
     <ProjectReference Include="..\Project0.Library\Project0.Library.csproj" />
-    <ProjectReference Include="..\Project0\Project0.csproj" />
   </ItemGroup>
 
 </Project>

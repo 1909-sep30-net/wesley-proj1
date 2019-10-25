@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project0", "Project0\Project0.csproj", "{9E373974-9BA3-4482-A1B6-5D4B71DB4C77}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project0.Library", "Project0.Library\Project0.Library.csproj", "{54F69F8D-A040-468B-9640-470547E008B2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFramework.DataAccess", "EntityFramework.DataAccess\EntityFramework.DataAccess.csproj", "{666B4EAA-6316-41A6-A2A8-7A429E8C126C}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E373974-9BA3-4482-A1B6-5D4B71DB4C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E373974-9BA3-4482-A1B6-5D4B71DB4C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E373974-9BA3-4482-A1B6-5D4B71DB4C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E373974-9BA3-4482-A1B6-5D4B71DB4C77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54F69F8D-A040-468B-9640-470547E008B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54F69F8D-A040-468B-9640-470547E008B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54F69F8D-A040-468B-9640-470547E008B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
